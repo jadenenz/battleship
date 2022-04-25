@@ -6,7 +6,7 @@ const shipFactory = (length, name) => {
     }
     //changes bool in hitLocations to 1 where the ship got hit
     const hit = (number) => {
-        hitLocations[number - 1] = 1
+        hitLocations[number] = 1
         return hitLocations
     }
     //returns true if every element in hitLocations = 1

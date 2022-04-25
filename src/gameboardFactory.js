@@ -10,6 +10,7 @@ const gameboardFactory = () => {
                 return grid[x][y]
             }
         } else {
+            console.log('x,y coordinates out of bounds')
             return undefined
         }
     }
@@ -17,9 +18,11 @@ const gameboardFactory = () => {
     //helper function that checks for valid positioning of
     //ships
     const checkPlacement = (ship, alignment, x, y) => {
+        const verticalMax = ship.length + y
+        const horizontalMax = ship.length + x
         for (let i = 0; i < ship.length; i++) {
             if (alignment === 'vertical') {
-                if (ship.length + y <= 9 && x <= 9) {
+                if (verticalMax <= 9 && x <= 9) {
                     if (get(x, y + i) !== 1) {
                         return false
                     }
@@ -27,7 +30,7 @@ const gameboardFactory = () => {
                     return false
                 }
             } else if (alignment === 'horizontal') {
-                if (ship.length + x <= 9 && y <= 9) {
+                if (horizontalMax <= 9 && y <= 9) {
                     if (get(x + i, y) !== 1) {
                         return false
                     }
@@ -46,14 +49,22 @@ const gameboardFactory = () => {
         if (checkPlacement(ship, alignment, x, y)) {
             for (let i = 0; i < ship.length; i++) {
                 if (alignment === 'vertical') {
-                    grid[x][y + i] = ship.name
+                    grid[x][y + i] = ship
                 } else if (alignment === 'horizontal') {
-                    grid[x + i][y] = ship.name
+                    grid[x + i][y] = ship
                 }
             }
         }
     }
 
-    return { grid, placeShip, get }
+    const receiveAttack = (x, y) => {
+        if (get(x, y) !== 1) {
+            //if (x,y) isn't empty
+            //send .hit() to ship in location
+            get(x, y).hit(1)
+        }
+    }
+
+    return { grid, placeShip, get, receiveAttack }
 }
 module.exports = gameboardFactory
