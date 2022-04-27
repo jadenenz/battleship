@@ -57,14 +57,19 @@ const gameboardFactory = () => {
         }
     }
 
+    let missedAttacks = []
     const receiveAttack = (x, y) => {
         if (get(x, y) !== 1) {
             //if (x,y) isn't empty
             //send .hit() to ship in location
             get(x, y).hit()
+        } else if (get(x, y) == 1) {
+            //THIS IS UNTESTED
+            //else record the missed shot
+            missedAttacks.push(x, y)
         }
     }
 
-    return { grid, placeShip, get, receiveAttack }
+    return { grid, missedAttacks, placeShip, get, receiveAttack }
 }
 module.exports = gameboardFactory

@@ -23,7 +23,5 @@ test('ship factory creates an object that isnt sunk', () => {
 test('isSunk properly checks if ship is sunk', () => {
     sunkenShip.hit()
     sunkenShip.hit()
-    console.log(`sunken ship hitcounter ${sunkenShip.hitCounter}`)
-    console.log(sunkenShip.getHitValue() >= sunkenShip.length) //THIS IS FALSE
     expect(sunkenShip.isSunk()).toEqual(true) //WHY IS THIS RETURNING TRUE
 })
