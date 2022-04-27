@@ -36,6 +36,6 @@ test('ship can receive an attack', () => {
     gameboard.placeShip(battleship, 'vertical', 1, 1)
     gameboard.receiveAttack(1, 2)
     gameboard.receiveAttack(1, 4)
-    // expect(gameboard.get(1, 2).hitLocations).toEqual([0, 1, 0, 1])
-    expect(gameboard.get(1, 4).hitLocations).toEqual([0, 1, 0, 0])
+    expect(gameboard.get(1, 2).getHitValue()).toEqual(2)
+    expect(gameboard.get(1, 4).getHitValue()).toEqual(2)
 })

@@ -61,7 +61,7 @@ const gameboardFactory = () => {
         if (get(x, y) !== 1) {
             //if (x,y) isn't empty
             //send .hit() to ship in location
-            get(x, y).hit(1)
+            get(x, y).hit()
         }
     }
 

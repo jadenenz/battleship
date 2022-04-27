@@ -1,19 +1,20 @@
 const shipFactory = (length, name) => {
-    //creates an array of bools in # equal to length
-    const hitLocations = []
-    for (let i = 0; i < length; i++) {
-        hitLocations.push(0)
+    //counter for how many hits ship has taken
+    let hitCounter = 0
+    //increases hit counter by 1
+    const hit = () => {
+        hitCounter = hitCounter + 1
     }
-    //changes bool in hitLocations to 1 where the ship got hit
-    const hit = (number) => {
-        hitLocations[number] = 1
-        return hitLocations
-    }
-    //returns true if every element in hitLocations = 1
+    //returns true if amt of hits is >= length
     const isSunk = () => {
-        return !hitLocations.includes(0)
+        return hitCounter >= length
     }
-    return { name, length, hitLocations, hit, isSunk }
+    //gets hitCounter value
+    const getHitValue = () => {
+        return hitCounter
+    }
+
+    return { name, length, hitCounter, hit, isSunk, getHitValue }
 }
 
 module.exports = shipFactory
