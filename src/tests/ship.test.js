@@ -23,5 +23,5 @@ test('ship factory creates an object that isnt sunk', () => {
 test('isSunk properly checks if ship is sunk', () => {
     sunkenShip.hit()
     sunkenShip.hit()
-    expect(sunkenShip.isSunk()).toEqual(true) //WHY IS THIS RETURNING TRUE
+    expect(sunkenShip.isSunk()).toEqual(true)
 })
