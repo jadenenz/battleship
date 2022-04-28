@@ -1,6 +1,12 @@
 const gameboardFactory = () => {
     //create an array of arrays with 10 elements each
-    const grid = Array.from(new Array(10), () => new Array(10).fill(1))
+    let grid = Array.from(new Array(10), () => new Array(10).fill(1))
+
+    const clearBoard = () => {
+        grid = Array.from(new Array(10), () => new Array(10).fill(1))
+        sunkShips = 0
+        allSunk = false
+    }
 
     const get = (x, y) => {
         const max = 9
@@ -58,18 +64,44 @@ const gameboardFactory = () => {
     }
 
     let missedAttacks = []
+    let sunkShips = 0
+    let allSunk = false
     const receiveAttack = (x, y) => {
         if (get(x, y) !== 1) {
             //if (x,y) isn't empty
             //send .hit() to ship in location
             get(x, y).hit()
+            if (get(x, y).isSunk()) {
+                //after being hit check if ship is sunk
+                //if sunk add to sunkShips counter
+                sunkShips++
+                if (sunkShips >= 5) {
+                    console.log('All battleships have been sunk')
+                    allSunk = true
+                }
+            }
         } else if (get(x, y) == 1) {
-            //THIS IS UNTESTED
             //else record the missed shot
             missedAttacks.push(x, y)
         }
     }
 
-    return { grid, missedAttacks, placeShip, get, receiveAttack }
+    const getMissedAttacks = () => {
+        return missedAttacks
+    }
+
+    const getSunkShips = () => {
+        return sunkShips
+    }
+
+    return {
+        grid,
+        getMissedAttacks,
+        getSunkShips,
+        placeShip,
+        get,
+        receiveAttack,
+        clearBoard,
+    }
 }
 module.exports = gameboardFactory
