@@ -60,17 +60,28 @@ const gameboardFactory = () => {
                     grid[x + i][y] = ship
                 }
             }
+        } else {
+            console.log('placement is invalid')
         }
     }
 
     let missedAttacks = []
+    let hitCoords = []
     let sunkShips = 0
     let allSunk = false
     const receiveAttack = (x, y) => {
         if (get(x, y) !== 1) {
             //if (x,y) isn't empty
+            const alreadyHit = hitCoords.find(
+                (element) => element[0] === x && element[1] === y
+            )
+            if (!alreadyHit) {
+                //if (x,y) hasn't already been hit
+                get(x, y).hit()
+            }
             //send .hit() to ship in location
-            get(x, y).hit()
+            hitCoords.push([x, y])
+            //record the hit location
             if (get(x, y).isSunk()) {
                 //after being hit check if ship is sunk
                 //if sunk add to sunkShips counter
@@ -82,7 +93,7 @@ const gameboardFactory = () => {
             }
         } else if (get(x, y) == 1) {
             //else record the missed shot
-            missedAttacks.push(x, y)
+            missedAttacks.push([x, y])
         }
     }
 
