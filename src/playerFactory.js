@@ -15,7 +15,18 @@ const playerFactory = (name) => {
     }
 
     const computerAttack = (board) => {
-        makeAttack(board, getRandomInt(0, 10), getRandomInt(0, 10))
+        let xCoord = getRandomInt(0, 10)
+        let yCoord = getRandomInt(0, 10)
+
+        while (
+            //if the random coords have already been used, reroll
+            board.alreadyHit(xCoord, yCoord) ||
+            board.alreadyMissed(xCoord, yCoord)
+        ) {
+            xCoord = getRandomInt(0, 10)
+            yCoord = getRandomInt(0, 10)
+        }
+        makeAttack(board, xCoord, yCoord) //make attack once coords are valid
     }
 
     return { name, playerBoard, makeAttack, computerAttack }

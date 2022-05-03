@@ -69,13 +69,19 @@ const gameboardFactory = () => {
     let hitCoords = []
     let sunkShips = 0
     let allSunk = false
+    const alreadyHit = (x, y) => {
+        return hitCoords.find((element) => element[0] === x && element[1] === y)
+    }
+    const alreadyMissed = (x, y) => {
+        return missedAttacks.find(
+            (element) => element[0] === x && element[1] === y
+        )
+    }
     const receiveAttack = (x, y) => {
         if (get(x, y) !== 1) {
             //if (x,y) isn't empty
-            const alreadyHit = hitCoords.find(
-                (element) => element[0] === x && element[1] === y
-            )
-            if (!alreadyHit) {
+
+            if (!alreadyHit(x, y)) {
                 //if (x,y) hasn't already been hit
                 get(x, y).hit()
             }
@@ -113,6 +119,8 @@ const gameboardFactory = () => {
         get,
         receiveAttack,
         clearBoard,
+        alreadyHit,
+        alreadyMissed,
     }
 }
 module.exports = gameboardFactory
