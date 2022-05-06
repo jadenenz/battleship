@@ -1,20 +1,26 @@
-// function setGrid(board) {
-//     for (let i = 1; i <= 100; i++) {
-//         let div = document.createElement('div')
-//         div.classList.add('grid-square')
-//         board.appendChild(div)
-//     }
-// }
+const gameboardFactory = require('./gameboardFactory')
 
 function setGrid(container, boardObject) {
-    for (let y of boardObject) {
-        for (let x of y) {
+    for (let y in boardObject.grid) {
+        const yArray = boardObject.grid[y]
+        for (let x in yArray) {
+            const cell = yArray[x]
             let div = document.createElement('div')
+            div.setAttribute('data-x', x)
+            div.setAttribute('data-y', y)
             container.appendChild(div)
-            if (element === 1) {
-                div.classList.add('grid-square')
+            if (boardObject.alreadyHit(x, y)) {
+                console.log('TRUE')
+                div.classList.add('grid-hit')
+            } else if (boardObject.alreadyMissed(x, y)) {
+                div.classList.add('grid-missed')
             } else {
-                div.classList.add('grid-ship')
+                if (cell === 1) {
+                    //if space is empty
+                    div.classList.add('grid-square')
+                } else {
+                    div.classList.add('grid-ship')
+                }
             }
         }
     }

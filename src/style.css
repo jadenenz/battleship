@@ -29,3 +29,11 @@ body {
 .grid-ship {
     background-color: grey;
 }
+
+.grid-missed {
+    background-color: white;
+}
+
+.grid-hit {
+    background-color: red;
+}

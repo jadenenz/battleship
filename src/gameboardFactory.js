@@ -83,6 +83,7 @@ const gameboardFactory = () => {
 
             if (!alreadyHit(x, y)) {
                 //if (x,y) hasn't already been hit
+                console.log(`Attack hit ${x},${y}`)
                 get(x, y).hit()
             }
             //send .hit() to ship in location
@@ -103,6 +104,10 @@ const gameboardFactory = () => {
         }
     }
 
+    const getHitCoords = () => {
+        return hitCoords
+    }
+
     const getMissedAttacks = () => {
         return missedAttacks
     }
@@ -114,6 +119,7 @@ const gameboardFactory = () => {
     return {
         grid,
         getMissedAttacks,
+        getHitCoords,
         getSunkShips,
         placeShip,
         get,
