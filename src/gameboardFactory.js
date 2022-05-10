@@ -100,6 +100,7 @@ const gameboardFactory = () => {
             }
         } else if (get(x, y) == 1) {
             //else record the missed shot
+            console.log(`Attack missed ${x},${y}`)
             missedAttacks.push([x, y])
         }
     }

@@ -14,9 +14,9 @@ const gamecontroller = () => {
     const d2 = shipFactory(2, 'destroyer')
     const p1 = playerFactory('p1')
     const p2 = playerFactory('p2')
-    p1.playerBoard.placeShip(c1, 'vertical', 0, 0)
-    p2.playerBoard.placeShip(c2, 'horizontal', 2, 1)
-    p1.playerBoard.placeShip(cr1, 'horizontal', 4, 6)
+    p1.playerBoard.placeShip(c1, 'vertical', 0, 0) //(0,0), (0,1), (0,2)...
+    p2.playerBoard.placeShip(c2, 'horizontal', 2, 1) //(2,1), (3,1), (4,1)...
+    p1.playerBoard.placeShip(cr1, 'horizontal', 4, 6) //(4,6), (5,6), (6,6)..
 
     return {
         c1,

@@ -1,14 +1,15 @@
 const gameboardFactory = require('./gameboardFactory')
 
 function setGrid(container, boardObject) {
-    for (let y in boardObject.grid) {
-        const yArray = boardObject.grid[y]
-        for (let x in yArray) {
-            const cell = yArray[x]
+    for (let y = 0; y < 10; y++) {
+        for (let x = 0; x < 10; x++) {
+            const cell = boardObject.get(x, y)
             let div = document.createElement('div')
             div.setAttribute('data-x', x)
             div.setAttribute('data-y', y)
             container.appendChild(div)
+            div.textContent = `${x},${y}`
+            console.log(x, y, cell)
             if (boardObject.alreadyHit(x, y)) {
                 console.log('TRUE')
                 div.classList.add('grid-hit')

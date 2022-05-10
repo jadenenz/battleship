@@ -20,6 +20,7 @@ body {
     width: 500px;
     gap: 3px;
     margin: 10px;
+    color: green;
 }
 
 .grid-square {

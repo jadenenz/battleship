@@ -12,11 +12,12 @@ const board2DOM = document.querySelector('.board2')
 const p1board = game.p1.playerBoard
 const p2board = game.p2.playerBoard
 
-setGrid(board1DOM, p1board)
-setGrid(board2DOM, p2board)
+// setGrid(board1DOM, p1board)
+// setGrid(board2DOM, p2board)
 
 p1board.receiveAttack(0, 0)
 p1board.receiveAttack(0, 4)
+p1board.receiveAttack(3, 0)
 console.log(p1board.grid)
 console.log(p1board.getHitCoords())
 console.log(p1board.getMissedAttacks())
@@ -24,3 +25,4 @@ console.log(p1board.getMissedAttacks())
 //fucked!
 
 setGrid(board1DOM, p1board)
+setGrid(board2DOM, p2board)
